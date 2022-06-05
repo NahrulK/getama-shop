@@ -3,8 +3,11 @@ import "./style.css";
 // import Logo from "../../assets/logo.png";
 import { ButtonGroup, Container, Nav, Navbar, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { auth } from "../../firebase/utils";
 
 const Header = (props) => {
+  const { currentUser } = props;
+
   return (
     <header className="header">
       <Navbar bg="light" expand="lg" className="bg-dark text-warning">
@@ -31,21 +34,42 @@ const Header = (props) => {
                 <Nav.Link href="" className="text-light ">
                   Produk
                 </Nav.Link>
-                <ButtonGroup>
-                  <Link to="/login">
-                    <Button variant="success " className="text-decoration-none">
-                      Sign in
-                    </Button>
-                  </Link>
-                  <Link to="/registration">
+
+                {/* Kalau user sudah login */}
+
+                {currentUser && (
+                  <Link>
                     <Button
-                      variant="secondary"
-                      className="text-decoration-none"
+                      variant="danger"
+                      className=""
+                      onClick={() => auth.signOut()}
                     >
-                      Register
+                      LogOut
                     </Button>
                   </Link>
-                </ButtonGroup>
+                )}
+
+                {/* Kalau user tida login, render login signup */}
+                {!currentUser && (
+                  <ButtonGroup>
+                    <Link to="/login">
+                      <Button
+                        variant="success "
+                        className="text-decoration-none"
+                      >
+                        Sign in
+                      </Button>
+                    </Link>
+                    <Link to="/registration">
+                      <Button
+                        variant="secondary"
+                        className="text-decoration-none"
+                      >
+                        Register
+                      </Button>
+                    </Link>
+                  </ButtonGroup>
+                )}
               </Nav>
             </Navbar.Collapse>
           </Navbar>
@@ -53,6 +77,10 @@ const Header = (props) => {
       </Navbar>
     </header>
   );
+};
+
+Header.defaultProps = {
+  currentUser: null,
 };
 
 export default Header;

@@ -14,11 +14,7 @@ class Registration extends Component {
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control type="email" placeholder="Enter email" />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
             </Form.Group>
-
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" placeholder="Password" />
@@ -26,9 +22,20 @@ class Registration extends Component {
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" className="mr-6" type="submit">
               Submit
             </Button>
+            {/* <div class="line-separator"></div> <div class="or-label">or</div> */}
+            <a
+              variant="dark"
+              class="shadow btn btn-google btn-outline ms-6 btn-dark"
+              href="#"
+            >
+              <span>
+                <img src="https://img.icons8.com/color/16/000000/google-logo.png" />
+              </span>
+              <span className="ms-2">Masuk dengan Google.</span>
+            </a>
           </Form>
         </Card>
       </div>
